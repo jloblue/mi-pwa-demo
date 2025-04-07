@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <title>Mi PWA Demo</title>
+  <meta name="theme-color" content="#317EFB">
+  <link rel="icon" href="/icon-192.png">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2em;
+    }
+    button {
+      padding: 1em;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Hola desde mi PWA!</h1>
+  <p>Instálame desde tu navegador para usarme como una app 😊</p>
+  <button onclick="saludar()">Púlsame</button>
+
+  <script>
+    function saludar() {
+      alert("¡Hola! Gracias por instalar la app.");
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(reg => console.log("✔️ Service Worker registrado", reg))
+        .catch(err => console.error("❌ Error registrando SW:", err));
+    }
+  </script>
+</body>
+</html>
